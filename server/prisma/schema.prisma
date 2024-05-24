@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +5,51 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id        String    @id @default(uuid())
+  name      String
+  number    String    @unique
+  createdAt DateTime  @default(now()) @map("created_at")
+  invoices  Invoice[]
+
+  @@map("customers")
+}
+
+model File {
+  id        String   @id @default(uuid())
+  name      String
+  path      String
+  createdAt DateTime @default(now()) @map("created_at")
+  invoice   Invoice?
+
+  @@map("files")
+}
+
+model Invoice {
+  id             String        @id @default(uuid())
+  referenceMonth String        @map("reference_month")
+  dueDate        DateTime      @map("due_date")
+  totalValue     Decimal       @map("total_value")
+  createdAt      DateTime      @default(now()) @map("created_at")
+  pdfId          String        @unique @map("pdf_id")
+  customerId     String        @map("customer_id")
+  items          InvoiceItem[]
+  customer       Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  pdf            File          @relation(fields: [pdfId], references: [id], onDelete: Cascade)
+
+  @@map("invoices")
+}
+
+model InvoiceItem {
+  id         String   @id @default(uuid())
+  name       String
+  amount     BigInt?
+  unitPrice  Decimal? @map("unit_price")
+  totalValue Decimal  @default(0) @map("total_value")
+  invoiceId  String   @map("invoice_id")
+  invoice    Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_items")
 }
