@@ -5,12 +5,13 @@ import "express-async-errors";
 
 import cors from "cors";
 
+import { NotFoundError } from "@/shared/errors/NotFoundError";
 import { BadRequestError } from "@/shared/errors/BadRequestError";
 import { ServiceUnavailableError } from "@/shared/errors/ServiceUnavailableError";
 
 import { LOCAL_UPLOADS_FOLDER } from "@/config/upload";
 
-import routes from "./routes";
+import { routes } from "./routes";
 
 class App {
   public server: Express;
@@ -50,6 +51,13 @@ class App {
 
         if (error instanceof ServiceUnavailableError) {
           return response.status(503).json({
+            status: "error",
+            message: error.message,
+          });
+        }
+
+        if (error instanceof NotFoundError) {
+          return response.status(404).json({
             status: "error",
             message: error.message,
           });

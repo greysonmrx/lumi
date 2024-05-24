@@ -1,9 +1,11 @@
 import { Router } from "express";
 
+import { invoicesRouter } from "@/modules/invoices/infra/http/routes/invoices.routes";
+
 import { healthCheckRouter } from "./healthCheck.routes";
 
-const routes = Router();
+export const routes = Router();
 
 routes.use(healthCheckRouter);
 
-export default routes;
+routes.use("/invoices", invoicesRouter);

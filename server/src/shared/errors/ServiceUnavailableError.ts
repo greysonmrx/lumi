@@ -1,5 +1,5 @@
 export class ServiceUnavailableError extends Error {
   constructor(message?: string) {
-    super(message ?? "Service Unavailable.");
+    super(message ?? "Serviço indisponível no momento");
   }
 }
