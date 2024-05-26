@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`[SERVICES] - Import Invoices Service > should be able to import invoices correctly 1`] = `
+{
+  "createdAt": Any<Date>,
+  "customer": undefined,
+  "customerId": Any<String>,
+  "dueDate": Any<Date>,
+  "id": Any<String>,
+  "items": [],
+  "pdf": undefined,
+  "pdfId": Any<String>,
+  "referenceMonth": Any<String>,
+  "totalValue": Any<Number>,
+}
+`;
+
+exports[`[SERVICES] - Import Invoices Service > should be able to import invoices correctly 2`] = `
+{
+  "createdAt": Any<Date>,
+  "customer": undefined,
+  "customerId": Any<String>,
+  "dueDate": Any<Date>,
+  "id": Any<String>,
+  "items": [],
+  "pdf": undefined,
+  "pdfId": Any<String>,
+  "referenceMonth": Any<String>,
+  "totalValue": Any<Number>,
+}
+`;
+
+exports[`[SERVICES] - Import Invoices Service > should be able to import invoices correctly 3`] = `
+{
+  "createdAt": Any<Date>,
+  "customer": undefined,
+  "customerId": Any<String>,
+  "dueDate": Any<Date>,
+  "id": Any<String>,
+  "items": [],
+  "pdf": undefined,
+  "pdfId": Any<String>,
+  "referenceMonth": Any<String>,
+  "totalValue": Any<Number>,
+}
+`;

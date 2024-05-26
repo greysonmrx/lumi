@@ -1,4 +1,4 @@
-export function getDotenvPath(env: string): string {
+export function getDotenvFilePath(env?: string): string {
   if (env === "TEST") {
     return ".env.test";
   }

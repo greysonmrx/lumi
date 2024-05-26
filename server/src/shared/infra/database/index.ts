@@ -1,8 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-export const prisma = new PrismaClient({
-  log: ["query"],
-}).$extends({
+export const prisma = new PrismaClient({}).$extends({
   result: {
     file: {
       url: {

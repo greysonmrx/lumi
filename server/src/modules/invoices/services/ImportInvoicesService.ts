@@ -26,7 +26,7 @@ type ImportInvoicesServiceRequest = {
   files: IFileToBeUploaded[];
 };
 
-type ImportInvoicesServiceResponse = any;
+type ImportInvoicesServiceResponse = IInvoice[];
 
 export class ImportInvoicesService {
   constructor(
@@ -52,15 +52,13 @@ export class ImportInvoicesService {
         .split("\n")
         .map((line) => line.trim());
 
-      // console.log(pdfContentInLines);
-
-      const customerName = getCustomerName(pdfContentInLines);
+      const customerName = this.getCustomerName(pdfContentInLines);
 
       if (!customerName) {
         throw new NotFoundError("Nome do cliente não foi encontrado");
       }
 
-      const customerNumber = getCustomerNumber(pdfContentInLines);
+      const customerNumber = this.getCustomerNumber(pdfContentInLines);
 
       if (!customerNumber) {
         throw new NotFoundError("Número do cliente não foi encontrado");
@@ -70,19 +68,19 @@ export class ImportInvoicesService {
         number: customerNumber,
       });
 
-      const dueDate = getDueDate(pdfContentInLines);
+      const dueDate = this.getDueDate(pdfContentInLines);
 
       if (!dueDate) {
         throw new NotFoundError("Data de vencimento não foi encontrada");
       }
 
-      const referenceMonth = getReferenceMonth(pdfContentInLines);
+      const referenceMonth = this.getReferenceMonth(pdfContentInLines);
 
       if (!referenceMonth) {
         throw new NotFoundError("Mês de referência não foi encontrado");
       }
 
-      const totalValue = getTotalValue(pdfContentInLines);
+      const totalValue = this.getTotalValue(pdfContentInLines);
 
       if (!totalValue) {
         throw new NotFoundError("Valor total não foi encontrado");
@@ -91,7 +89,7 @@ export class ImportInvoicesService {
       const invoiceItems: InvoiceItemData[] = [];
 
       Object.keys(INVOICE_ITEMS_TO_FIND).forEach((INVOICE_ITEM) => {
-        const invoiceItem = getInvoiceItemData(
+        const invoiceItem = this.getInvoiceItemData(
           pdfContentInLines,
           INVOICE_ITEM as keyof typeof INVOICE_ITEMS_TO_FIND
         );
@@ -129,5 +127,32 @@ export class ImportInvoicesService {
     }
 
     return invoices;
+  }
+
+  public getCustomerName(contentInLines: string[]) {
+    return getCustomerName(contentInLines);
+  }
+
+  public getDueDate(contentInLines: string[]) {
+    return getDueDate(contentInLines);
+  }
+
+  public getTotalValue(contentInLines: string[]) {
+    return getTotalValue(contentInLines);
+  }
+
+  public getCustomerNumber(contentInLines: string[]) {
+    return getCustomerNumber(contentInLines);
+  }
+
+  public getReferenceMonth(contentInLines: string[]) {
+    return getReferenceMonth(contentInLines);
+  }
+
+  public getInvoiceItemData(
+    contentInLines: string[],
+    itemName: keyof typeof INVOICE_ITEMS_TO_FIND
+  ) {
+    return getInvoiceItemData(contentInLines, itemName);
   }
 }
