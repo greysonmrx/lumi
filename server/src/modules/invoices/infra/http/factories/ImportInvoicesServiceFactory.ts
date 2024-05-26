@@ -4,8 +4,9 @@ import { PdfParseProvider } from "@/modules/invoices/providers/PdfReaderProvider
 import { LocalStorageProvider } from "@/modules/files/providers/FileManagerProvider/implementations/LocalStorageProvider";
 
 import { FilesRepository } from "@/modules/files/infra/database/repositories/FilesRepository";
-import { InvoicesRepository } from "../database/repositories/InvoicesRepository";
+
 import { CustomersRepository } from "@/modules/customers/infra/database/repositories/CustomersRepository";
+import { InvoicesRepository } from "../../database/repositories/InvoicesRepository";
 
 export function makeImportInvoicesService(): ImportInvoicesService {
   const pdfParseProvider = new PdfParseProvider();

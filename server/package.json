@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "lumi-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "db:studio": "prisma studio --browser none",
     "build": "tsc --outDir dist",
     "start": "node dist/shared/infra/http/server.js",
-    "test": "vitest"
+    "test": "vitest run --update"
   },
   "keywords": [],
   "author": "",

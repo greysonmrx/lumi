@@ -76,7 +76,7 @@ describe("[SERVICES] - Import Invoices Service", () => {
     getCustomerNameSpy.mockReturnValue("Customer Name");
     getCustomerNumberSpy.mockReturnValue("123321");
     getDueDateSpy.mockReturnValue("2003-02-01");
-    getReferenceMonthSpy.mockReturnValue("FEV/03");
+    getReferenceMonthSpy.mockReturnValue("FEV/2003");
     getTotalValueSpy.mockReturnValue(1000);
 
     const invoices = await importInvoices.perform({ files });
@@ -99,7 +99,7 @@ describe("[SERVICES] - Import Invoices Service", () => {
   it("should not be able to import invoices if customer name is not found", async () => {
     getCustomerNumberSpy.mockReturnValue("123321");
     getDueDateSpy.mockReturnValue("2003-02-01");
-    getReferenceMonthSpy.mockReturnValue("FEV/03");
+    getReferenceMonthSpy.mockReturnValue("FEV/2003");
     getTotalValueSpy.mockReturnValue(1000);
 
     await expect(importInvoices.perform({ files })).rejects.toThrow(
@@ -110,7 +110,7 @@ describe("[SERVICES] - Import Invoices Service", () => {
   it("should not be able to import invoices if customer number is not found", async () => {
     getCustomerNameSpy.mockReturnValue("Customer Name");
     getDueDateSpy.mockReturnValue("2003-02-01");
-    getReferenceMonthSpy.mockReturnValue("FEV/03");
+    getReferenceMonthSpy.mockReturnValue("FEV/2003");
     getTotalValueSpy.mockReturnValue(1000);
 
     await expect(importInvoices.perform({ files })).rejects.toThrow(
@@ -121,7 +121,7 @@ describe("[SERVICES] - Import Invoices Service", () => {
   it("should not be able to import invoices if due date is not found", async () => {
     getCustomerNameSpy.mockReturnValue("Customer Name");
     getCustomerNumberSpy.mockReturnValue("123321");
-    getReferenceMonthSpy.mockReturnValue("FEV/03");
+    getReferenceMonthSpy.mockReturnValue("FEV/2003");
     getTotalValueSpy.mockReturnValue(1000);
 
     await expect(importInvoices.perform({ files })).rejects.toThrow(
@@ -144,7 +144,7 @@ describe("[SERVICES] - Import Invoices Service", () => {
     getCustomerNameSpy.mockReturnValue("Customer Name");
     getCustomerNumberSpy.mockReturnValue("123321");
     getDueDateSpy.mockReturnValue("2003-02-01");
-    getReferenceMonthSpy.mockReturnValue("FEV/03");
+    getReferenceMonthSpy.mockReturnValue("FEV/2003");
 
     await expect(importInvoices.perform({ files })).rejects.toThrow(
       NotFoundError

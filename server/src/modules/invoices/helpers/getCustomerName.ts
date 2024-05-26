@@ -5,45 +5,37 @@ import {
 } from "@/config/constants";
 
 export function getCustomerName(contentInLines: string[]): string | undefined {
-  const lineWithCustomerName = contentInLines.find((line, lineIndex) => {
-    if (
-      contentInLines[lineIndex - 1] &&
-      (contentInLines[lineIndex - 1].match(BARCODE_REGEX) ||
-        contentInLines[lineIndex - 1].match(TEXT_TO_FIND_BARCODE_IN_PDF) ||
-        contentInLines[lineIndex - 1].match(
-          TEXT_TO_FIND_PAYMENT_VOUCHER_IN_PDF
-        ))
-    ) {
-      if (line.match(TEXT_TO_FIND_BARCODE_IN_PDF)) {
-        return undefined;
+  const filteredContentInLines = contentInLines.filter(
+    (content) =>
+      !content.match("ATENÇÃO:") && !content.match("DÉBITO AUTOMÁTICO")
+  );
+
+  const lineWithCustomerName = filteredContentInLines.find(
+    (line, lineIndex) => {
+      if (
+        filteredContentInLines[lineIndex - 1] &&
+        (filteredContentInLines[lineIndex - 1].match(BARCODE_REGEX) ||
+          filteredContentInLines[lineIndex - 1].match(
+            TEXT_TO_FIND_BARCODE_IN_PDF
+          ) ||
+          filteredContentInLines[lineIndex - 1].match(
+            TEXT_TO_FIND_PAYMENT_VOUCHER_IN_PDF
+          ))
+      ) {
+        if (line.match(TEXT_TO_FIND_BARCODE_IN_PDF)) {
+          return undefined;
+        }
+
+        return line;
       }
 
-      return line;
+      return undefined;
     }
-
-    return undefined;
-  });
+  );
 
   if (lineWithCustomerName) {
     return lineWithCustomerName;
   }
-
-  // const secondAttemptToGetTheLineWithCustomerName = contentInLines.find(
-  //   (line, lineIndex) => {
-  //     if (
-  //       contentInLines[lineIndex - 1] &&
-  //       contentInLines[lineIndex - 1].match("Comprovante de Pagamento")
-  //     ) {
-  //       return line;
-  //     }
-
-  //     return undefined;
-  //   }
-  // );
-
-  // if (secondAttemptToGetTheLineWithCustomerName) {
-  //   return secondAttemptToGetTheLineWithCustomerName;
-  // }
 
   return undefined;
 }

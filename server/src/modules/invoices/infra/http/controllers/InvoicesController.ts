@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import type { UploadedFile } from "express-fileupload";
 
-import { makeImportInvoicesService } from "../../factories/ImportInvoicesServiceFactory";
+import { makeImportInvoicesService } from "../factories/ImportInvoicesServiceFactory";
 
 export class InvoicesController {
   public async store(request: Request, response: Response): Promise<Response> {
