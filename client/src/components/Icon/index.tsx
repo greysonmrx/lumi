@@ -15,7 +15,8 @@ type IconName =
   | "scales"
   | "search"
   | "invoice"
-  | "upload";
+  | "upload"
+  | "currency-dollar";
 
 interface IconProps extends PhosphorIcons.IconProps {
   name: IconName;
@@ -48,6 +49,9 @@ const iconList: Record<IconName, React.FC<Pick<IconProps, "size">>> = {
   ),
   wallet: (props) => (
     <PhosphorIcons.Wallet aria-label="wallet" weight="fill" {...props} />
+  ),
+  "currency-dollar": (props) => (
+    <PhosphorIcons.CurrencyDollar aria-label="coins" weight="bold" {...props} />
   ),
   "trend-up": (props) => (
     <PhosphorIcons.TrendUp aria-label="trend-up" weight="bold" {...props} />

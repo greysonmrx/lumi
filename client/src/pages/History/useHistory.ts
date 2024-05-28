@@ -13,7 +13,7 @@ interface UseHistoryData {
   fileInputRef: React.RefObject<HTMLInputElement>;
   selectedYear: string;
   customerList: ListCustomersWithInvoicesResponse;
-  listOfLastSixYears: string[];
+  listOfLastFiveYears: string[];
   handleSelectYear: (year: string) => void;
   handleUploadInvoices: (
     event: React.ChangeEvent<HTMLInputElement>
@@ -23,12 +23,12 @@ interface UseHistoryData {
 
 export function useHistory(): UseHistoryData {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
-  const listOfLastSixYears = React.useMemo(() => {
+  const listOfLastFiveYears = React.useMemo(() => {
     const currentYear = new Date().getFullYear();
 
     const years = [];
 
-    for (let year = currentYear; years.length < 6; year--) {
+    for (let year = currentYear; years.length < 5; year--) {
       years.push(String(year));
     }
 
@@ -36,7 +36,7 @@ export function useHistory(): UseHistoryData {
   }, []);
 
   const [selectedYear, setSelectedYear] = React.useState(
-    listOfLastSixYears[listOfLastSixYears.length - 1]
+    listOfLastFiveYears[listOfLastFiveYears.length - 1]
   );
   const [loading, setLoading] = React.useState(true);
   const [searchText, setSearchText] = React.useState("");
@@ -100,7 +100,7 @@ export function useHistory(): UseHistoryData {
     fileInputRef,
     selectedYear,
     customerList,
-    listOfLastSixYears,
+    listOfLastFiveYears,
     handleSelectYear,
     handleUploadInvoices,
     handleChangeSearchText: debounce(handleChangeSearchText, 500),

@@ -21,7 +21,7 @@ export const History: React.FC = () => {
     fileInputRef,
     selectedYear,
     customerList,
-    listOfLastSixYears,
+    listOfLastFiveYears,
     handleSelectYear,
     handleUploadInvoices,
     handleChangeSearchText,
@@ -58,7 +58,7 @@ export const History: React.FC = () => {
           defaultValue={selectedYear}
           className="w-full md:w-fit"
         >
-          {listOfLastSixYears.map((year) => (
+          {listOfLastFiveYears.map((year) => (
             <Toggle.Item
               key={year}
               value={year}
@@ -71,7 +71,7 @@ export const History: React.FC = () => {
         </Toggle.Root>
         <SearchField
           placeholder="Buscar por clientes"
-          className="w-full md:w-fit"
+          className="w-full md:w-[300px]"
           onChange={handleChangeSearchText}
         />
       </div>

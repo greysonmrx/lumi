@@ -1,5 +1,9 @@
-import Image from "next/image";
+import { Metadata } from "next";
 
-export default function Home() {
-  return <main>opa</main>;
-}
+import { Dashboard } from "@/pages/Dashboard";
+
+export const metadata: Metadata = {
+  title: "Painel de controle | Lumi",
+};
+
+export default Dashboard;

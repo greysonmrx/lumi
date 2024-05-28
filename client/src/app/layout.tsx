@@ -22,7 +22,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <head>
         <meta name="theme-color" content="#052E16" />
       </head>
-      <body className={twMerge("flex", plusJakartaSans.className)}>
+      <body className={twMerge("", plusJakartaSans.className)}>
         <DefaultLayout>{children}</DefaultLayout>
       </body>
     </html>

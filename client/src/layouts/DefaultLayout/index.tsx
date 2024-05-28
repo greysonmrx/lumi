@@ -10,9 +10,7 @@ export const DefaultLayout: React.FC<React.PropsWithChildren> = ({
   return (
     <>
       <Sidebar />
-      <main className="md:p-10 p-6 pt-10 h-screen w-screen overflow-auto">
-        {children}
-      </main>
+      <main className="md:p-10 p-6 pt-10 overflow-y-auto">{children}</main>
     </>
   );
 };
