@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import * as PrimitiveToggleGroup from "@radix-ui/react-toggle-group";
 import { twMerge } from "tailwind-merge";
+import * as PrimitiveToggleGroup from "@radix-ui/react-toggle-group";
 
 interface ToggleProps
   extends React.PropsWithChildren,

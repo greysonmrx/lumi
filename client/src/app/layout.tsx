@@ -1,7 +1,7 @@
 import React from "react";
-import { Plus_Jakarta_Sans as PlusJakartaSans } from "next/font/google";
-import { twMerge } from "tailwind-merge";
 import type { Metadata } from "next";
+import { twMerge } from "tailwind-merge";
+import { Plus_Jakarta_Sans as PlusJakartaSans } from "next/font/google";
 
 import { DefaultLayout } from "@/layouts/DefaultLayout";
 
