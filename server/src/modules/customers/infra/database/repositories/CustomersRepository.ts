@@ -46,11 +46,13 @@ export class CustomersRepository implements ICustomersRepository {
           },
         },
       },
-      select: {
-        id: true,
-        name: true,
-        number: true,
+      include: {
         invoices: {
+          where: {
+            referenceMonth: {
+              endsWith: data.year,
+            },
+          },
           select: {
             id: true,
             referenceMonth: true,
@@ -64,7 +66,18 @@ export class CustomersRepository implements ICustomersRepository {
       },
     });
 
-    return customers;
+    return customers.map((customer) => ({
+      id: customer.id,
+      name: customer.name,
+      number: customer.number,
+      invoices: customer.invoices.map((invoice) => ({
+        id: invoice.id,
+        referenceMonth: invoice.referenceMonth,
+        pdf: {
+          url: invoice.pdf?.url,
+        },
+      })),
+    }));
   }
 
   public async create(data: ICreateCustomerDTO): Promise<ICustomer> {

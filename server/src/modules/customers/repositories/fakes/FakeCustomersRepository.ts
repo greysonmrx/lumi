@@ -53,8 +53,7 @@ export class FakeCustomersRepository implements ICustomersRepository {
           id: invoice.id,
           referenceMonth: invoice.referenceMonth,
           pdf: {
-            name: invoice.pdf?.name || "",
-            path: invoice.pdf?.path || "",
+            url: invoice.pdf?.url || "",
           },
         })),
       }));
