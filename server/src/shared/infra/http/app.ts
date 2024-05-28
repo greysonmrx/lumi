@@ -25,11 +25,7 @@ class App {
   }
 
   private middlewares(): void {
-    this.server.use(
-      cors({
-        origin: "https://lumi.greyson.com.br/",
-      })
-    );
+    this.server.use(cors());
     this.server.use(express.json());
     this.server.use("/files", express.static(LOCAL_UPLOADS_FOLDER));
   }

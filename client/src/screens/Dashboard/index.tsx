@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useSearchParams } from "next/navigation";
 
 import { Icon } from "@/components/Icon";
 import { KWhChart } from "./components/KWhChart";
@@ -16,6 +17,8 @@ import { numberWithDots } from "@/utils/numberWithDots";
 import { useDashboard } from "./useDashboard";
 
 export const Dashboard: React.FC = () => {
+  const searchParams = useSearchParams();
+
   const {
     isLoading,
     analytics,
@@ -45,6 +48,7 @@ export const Dashboard: React.FC = () => {
           placeholder="Nº do cliente"
           className="w-full md:w-[300px]"
           disabled={isLoading}
+          defaultValue={searchParams.get("customerNumber") ?? ""}
           onChange={handleChangeSearchText}
         />
       </div>
@@ -261,13 +265,11 @@ export const Dashboard: React.FC = () => {
                 <AnalyticsCardSkeleton.Title />
               </AnalyticsCardSkeleton.Header>
             </AnalyticsCardSkeleton.Root>
-            <AnalyticsCardSkeleton.Root className="justify-between items-center p-5 lg:col-span-1 lg:row-span-2 md:col-start-1 md:col-end-3 md:row-start-3 md:row-end-5 col-start-1 col-end-2 row-start-5 row-end-7 ">
-              <AnalyticsCardSkeleton.Content className="flex-col items-center gap-5">
-                <AnalyticsCardSkeleton.Title className="px-20" />
-                <AnalyticsCardSkeleton.Value className="px-8 py-6" />
-                <AnalyticsCardSkeleton.ComparisonValue />
-              </AnalyticsCardSkeleton.Content>
-              <AnalyticsCardSkeleton.Button />
+            <AnalyticsCardSkeleton.Root className="lg:col-span-1 lg:row-span-2 md:col-start-1 md:col-end-3 md:row-start-3 md:row-end-5 col-start-1 col-end-2 row-start-5 row-end-7">
+              <AnalyticsCardSkeleton.Header>
+                <AnalyticsCardSkeleton.Icon />
+                <AnalyticsCardSkeleton.Title />
+              </AnalyticsCardSkeleton.Header>
             </AnalyticsCardSkeleton.Root>
           </>
         )}
