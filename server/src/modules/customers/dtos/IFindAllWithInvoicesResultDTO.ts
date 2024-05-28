@@ -8,6 +8,6 @@ export type IFindAllWithInvoicesResultDTO = (Pick<
   "id" | "name" | "number"
 > & {
   invoices: (Pick<IInvoice, "id" | "referenceMonth"> & {
-    pdf: Pick<IFile, "url">;
+    pdf: Pick<IFile, "name">;
   })[];
 })[];

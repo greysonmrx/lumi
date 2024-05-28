@@ -58,7 +58,7 @@ export class CustomersRepository implements ICustomersRepository {
             referenceMonth: true,
             pdf: {
               select: {
-                url: true,
+                name: true,
               },
             },
           },
@@ -74,7 +74,7 @@ export class CustomersRepository implements ICustomersRepository {
         id: invoice.id,
         referenceMonth: invoice.referenceMonth,
         pdf: {
-          url: invoice.pdf?.url,
+          name: invoice.pdf?.name,
         },
       })),
     }));

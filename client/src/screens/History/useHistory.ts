@@ -78,6 +78,8 @@ export function useHistory(): UseHistoryData {
         return;
       }
 
+      setLoading(true);
+
       try {
         const files = event.target.files;
 
@@ -86,6 +88,8 @@ export function useHistory(): UseHistoryData {
         await handleFetchCustomerList(selectedYear, searchText);
       } catch (error) {
         alert(error);
+      } finally {
+        setLoading(false);
       }
     },
     [selectedYear, searchText, handleFetchCustomerList]

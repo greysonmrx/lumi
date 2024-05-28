@@ -14,7 +14,7 @@ type ListCustomersWithInvoicesRequest = {
 export type ListCustomersWithInvoicesResponse = Array<
   Omit<ICustomer, "createdAt"> & {
     invoices: Pick<IInvoice, "id" | "referenceMonth"> & {
-      pdf: Pick<IFile, "url">;
+      pdf: Pick<IFile, "name">;
     };
   }
 >;

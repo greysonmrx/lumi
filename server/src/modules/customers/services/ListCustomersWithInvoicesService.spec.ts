@@ -84,7 +84,7 @@ describe("[SERVICES] - List Customers With Invoices Service", () => {
         id: expect.any(String),
         referenceMonth: expect.any(String),
         pdf: {
-          url: expect.any(String),
+          name: expect.any(String),
         },
       });
     });
@@ -120,7 +120,7 @@ describe("[SERVICES] - List Customers With Invoices Service", () => {
         id: expect.any(String),
         referenceMonth: expect.any(String),
         pdf: {
-          url: expect.any(String),
+          name: expect.any(String),
         },
       });
     });
@@ -156,7 +156,7 @@ describe("[SERVICES] - List Customers With Invoices Service", () => {
         id: expect.any(String),
         referenceMonth: expect.any(String),
         pdf: {
-          url: expect.any(String),
+          name: expect.any(String),
         },
       });
     });

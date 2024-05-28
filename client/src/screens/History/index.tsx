@@ -45,8 +45,13 @@ export const History: React.FC = () => {
             accept="application/pdf"
             multiple={true}
             onChange={handleUploadInvoices}
+            disabled={loading}
           />
-          <Button role="button" onClick={() => fileInputRef.current?.click()}>
+          <Button
+            role="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={loading}
+          >
             <Icon name="upload" size={16} />
             Importar faturas
           </Button>
@@ -92,7 +97,12 @@ export const History: React.FC = () => {
             customerList.map((customer) => (
               <Table.Row key={customer.id}>
                 <Table.Cell className="font-medium">
-                  {customer.number}
+                  <a
+                    href={`/?customerNumber=${customer.number}`}
+                    className="underline text-green-700"
+                  >
+                    {customer.number}
+                  </a>
                 </Table.Cell>
                 <Table.Cell>{customer.name.toUpperCase()}</Table.Cell>
                 {SHORT_MONTHS.map((month) => {
@@ -110,7 +120,7 @@ export const History: React.FC = () => {
                           <Tooltip.Trigger>
                             <a
                               target="_blank"
-                              href={invoiceExists.pdf?.url}
+                              href={`${process.env.NEXT_PUBLIC_API_URL}/files/${invoiceExists.pdf?.name}`}
                               rel="noopener noreferrer"
                             >
                               <button className="flex flex-1 border rounded-md items-center justify-center w-8 h-8 hover:bg-green-700/90 text-white bg-green-700">
