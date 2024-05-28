@@ -61,6 +61,9 @@ $ npm install
 # Run database
 $ docker-compose up -d
 
+# Run migrations
+$ npx prisma migrate dev
+
 # Run the backend
 $ npm run dev
 
