@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Dashboard } from "@/pages/Dashboard";
+import { Dashboard } from "@/screens/Dashboard";
 
 export const metadata: Metadata = {
   title: "Painel de controle | Lumi",
