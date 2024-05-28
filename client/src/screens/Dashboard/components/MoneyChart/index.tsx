@@ -18,7 +18,7 @@ interface MoneyChartProps {
 
 export const MoneyChart: React.FC<MoneyChartProps> = ({ data }) => {
   return (
-    <div className="h-full">
+    <div className="h-[300px] md:h-full">
       <ReactEcharts
         className="!h-full"
         option={{

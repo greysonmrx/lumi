@@ -52,7 +52,7 @@ export const Dashboard: React.FC = () => {
           onChange={handleChangeSearchText}
         />
       </div>
-      <div className="grid gap-4 lg:grid-cols-4 lg:grid-rows-3 md:grid-cols-2 grid-cols-1 md:grid-rows-8">
+      <div className="grid gap-4 lg:grid-cols-4 lg:grid-rows-3 md:grid-cols-2 grid-cols-1 md:grid-rows-7">
         {!isLoading && analytics ? (
           <>
             <AnalyticsCard.Root className="lg:col-span-1 lg:row-span-1 md:col-start-1 md:col-end-2 md:row-start-1 md:row-end-2 col-start-1 col-end-2 row-start-1 row-end-2">

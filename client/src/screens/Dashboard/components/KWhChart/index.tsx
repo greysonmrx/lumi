@@ -18,7 +18,7 @@ interface KWhChartProps {
 
 export const KWhChart: React.FC<KWhChartProps> = ({ data }) => {
   return (
-    <div className="h-full">
+    <div className="h-[300px] md:h-full">
       <ReactEcharts
         className="!h-full"
         option={{

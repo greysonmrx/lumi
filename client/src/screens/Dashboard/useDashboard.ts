@@ -1,4 +1,5 @@
 import React from "react";
+import { useSearchParams } from "next/navigation";
 
 import { InvoicesService } from "@/services/InvoicesService";
 
@@ -37,10 +38,14 @@ interface UseDashboardData {
 }
 
 export function useDashboard(): UseDashboardData {
+  const searchParams = useSearchParams();
+
   const lastUpdateDate = React.useMemo(() => new Date(), []);
 
   const [isLoading, setIsLoading] = React.useState(false);
-  const [searchText, setSearchText] = React.useState("");
+  const [searchText, setSearchText] = React.useState(
+    searchParams.get("customerNumber") ?? ""
+  );
   const [analytics, setAnalytics] =
     React.useState<UseDashboardData["analytics"]>();
   const [kWhChartData, setKWhChartData] = React.useState<
@@ -69,8 +74,7 @@ export function useDashboard(): UseDashboardData {
         setKWhChartData(
           SHORT_MONTHS.map((month) => [
             month,
-            (invoicesOverview[month]?.generatedEnergyAmount ?? 0) +
-              (invoicesOverview[month]?.consumedEnergyAmount ?? 0),
+            invoicesOverview[month]?.consumedEnergyAmount ?? 0,
             invoicesOverview[month]?.compensatedEnergyAmount ?? 0,
           ])
         );
@@ -91,7 +95,7 @@ export function useDashboard(): UseDashboardData {
           }, 0),
         ]);
 
-        const currentMonthIndex = lastUpdateDate.getMonth();
+        const currentMonthIndex = 0;
         const currentMonth = SHORT_MONTHS[currentMonthIndex];
         const lastMonth =
           SHORT_MONTHS[currentMonthIndex === 0 ? 11 : currentMonthIndex - 1];
